@@ -1,4 +1,4 @@
-# mini_project_bnsp
+# Sweet Dreams Bakery
 
 A new Flutter project.
 
