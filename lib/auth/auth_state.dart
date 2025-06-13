@@ -29,7 +29,7 @@ abstract class AuthStateBase<T extends StatefulWidget> extends State<T> {
   // Show snackbar
   void showSnackBar(String message, {bool isError = false}) {
     if (!mounted) return;
-    
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
@@ -42,9 +42,7 @@ abstract class AuthStateBase<T extends StatefulWidget> extends State<T> {
   void handleError(dynamic error) {
     isLoading = false;
     showSnackBar(
-      error is AuthException 
-          ? error.message 
-          : 'An unexpected error occurred',
+      error is AuthException ? error.message : 'An unexpected error occurred',
       isError: true,
     );
   }

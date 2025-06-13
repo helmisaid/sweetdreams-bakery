@@ -25,7 +25,7 @@ class _LoginScreenState extends AuthStateBase<LoginScreen> {
 
   Future<void> _signIn() async {
     if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
-      showSnackBar('Please enter email and password', isError: true);
+      showSnackBar('Silahkan masukkan email dan password', isError: true);
       return;
     }
 
@@ -72,7 +72,7 @@ class _LoginScreenState extends AuthStateBase<LoginScreen> {
 
   Future<void> _signUp() async {
     if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
-      showSnackBar('Please enter email and password', isError: true);
+      showSnackBar('Silahkan masukkan email dan password', isError: true);
       return;
     }
 
@@ -90,7 +90,7 @@ class _LoginScreenState extends AuthStateBase<LoginScreen> {
           showSnackBar(
               'Registration successful! Please check your email for verification.');
         } else {
-          showSnackBar('Registration successful! You can now log in.');
+          showSnackBar('Daftar berhasil, silahkan login!');
         }
 
         setState(() {
@@ -173,7 +173,9 @@ class _LoginScreenState extends AuthStateBase<LoginScreen> {
                           ),
                           const SizedBox(height: 24),
                           Text(
-                            _isLoginMode ? 'Welcome Back' : 'Create Account',
+                            _isLoginMode
+                                ? 'Selamat Datang Kembali'
+                                : 'Buat Akun',
                             style: TextStyle(
                               fontSize: 26,
                               fontWeight: FontWeight.bold,
@@ -183,15 +185,14 @@ class _LoginScreenState extends AuthStateBase<LoginScreen> {
                           const SizedBox(height: 8),
                           Text(
                             _isLoginMode
-                                ? 'Sign in to your account'
-                                : 'Fill the form to join us',
+                                ? 'Masuk dengan akun anda'
+                                : 'Isi form untuk bergabung dengan kami',
                             style: TextStyle(
                                 fontSize: 16, color: Colors.grey[600]),
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(height: 32),
 
-                          // --- Field Display Name (Kondisional) ---
                           AnimatedSwitcher(
                             duration: const Duration(milliseconds: 300),
                             transitionBuilder: (child, animation) =>
@@ -204,11 +205,11 @@ class _LoginScreenState extends AuthStateBase<LoginScreen> {
                                     child: TextFormField(
                                       controller: _displayNameController,
                                       decoration: const InputDecoration(
-                                          labelText: 'Display Name',
+                                          labelText: 'Nama Panggilan',
                                           border: OutlineInputBorder()),
                                       validator: (v) => !_isLoginMode &&
                                               v!.isEmpty
-                                          ? 'Display Name tidak boleh kosong'
+                                          ? 'Nama panggilan tidak boleh kosong'
                                           : null,
                                     ),
                                   )
@@ -219,7 +220,7 @@ class _LoginScreenState extends AuthStateBase<LoginScreen> {
                           TextFormField(
                             controller: _emailController,
                             decoration: const InputDecoration(
-                                labelText: 'Email Address',
+                                labelText: 'Alamat Email',
                                 border: OutlineInputBorder()),
                             keyboardType: TextInputType.emailAddress,
                             validator: (v) =>
@@ -260,7 +261,7 @@ class _LoginScreenState extends AuthStateBase<LoginScreen> {
                                       controller: _confirmPasswordController,
                                       obscureText: _obscurePassword,
                                       decoration: const InputDecoration(
-                                          labelText: 'Confirm Password',
+                                          labelText: 'Konfirmasi Password',
                                           border: OutlineInputBorder()),
                                       validator: (v) {
                                         if (!_isLoginMode && v!.isEmpty)
@@ -299,7 +300,7 @@ class _LoginScreenState extends AuthStateBase<LoginScreen> {
                                       child: CircularProgressIndicator(
                                           color: Colors.white,
                                           strokeWidth: 2.5))
-                                  : Text(_isLoginMode ? 'Sign In' : 'Sign Up',
+                                  : Text(_isLoginMode ? 'Masuk' : 'Daftar',
                                       style: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold)),
@@ -315,8 +316,8 @@ class _LoginScreenState extends AuthStateBase<LoginScreen> {
                                     () => _isLoginMode = !_isLoginMode),
                             child: Text(
                               _isLoginMode
-                                  ? 'Don\'t have an account? Sign Up'
-                                  : 'Already have an account? Sign In',
+                                  ? 'Belum punya akun? Daftar'
+                                  : 'Sudah punya akun? Masuk',
                               style: TextStyle(
                                   color: Colors.brown.shade700,
                                   fontWeight: FontWeight.w500),
